@@ -1,0 +1,41 @@
+from art import logo 
+import random 
+
+print(logo)
+print("Welcome to Guess A Number!")
+print("I'm thinking of a number between 1-100.")
+difficulty = input("Choose a difficulty, type 'easy' for 10 lives, 'hard' for 5 lives. ")
+
+def game():
+  chosen_number = random.randint(1,100)
+  game_end = False 
+  lives_remaining = 0
+  if difficulty == "easy":
+    lives_remaining += 10
+  elif difficulty  == "hard":
+    lives_remaining += 5
+
+  while not game_end:
+    guess = int(input("Make a guess: "))
+    if guess == chosen_number:
+      game_end = True
+      print(f"You did it! The number was {chosen_number}")
+    elif lives_remaining == 1:
+      game_end = True
+      print(f"You are out of lives. The number was {chosen_number}. You lose!")
+    elif guess > chosen_number:
+      lives_remaining -= 1
+      print("Too high.")
+      print(f"You have {lives_remaining} lives remaining to guess the number.")
+    elif guess < chosen_number:
+      lives_remaining -= 1
+      print("Too low.")
+      print(f"You have {lives_remaining} lives remaining to guess the number.")
+    else:
+     guess = int(input("Make a guess: "))   
+     print(f"You have {lives_remaining} lives remaining to guess the number.")
+    
+game()
+    
+
+    
